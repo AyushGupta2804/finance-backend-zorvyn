@@ -11,8 +11,6 @@
 |---|---|
 | GitHub | https://github.com/AyushGupta2804/finance-backend-zorvyn |
 | Live API  <<<<<<< HEAD
-| Live API | https://your-railway-url.up.railway.app |
-=======
 | Live API  | https://finance-backend-zorvyn-production.up.railway.app |
 >>>>>>> 25371db (Add welcome route and update README with live URL)
 | Health Check | https://your-railway-url.up.railway.app/health |
@@ -51,11 +49,6 @@ Default admin account:
 
 ## Project Structure
 
-<<<<<<< HEAD
-```
-=======
-
->>>>>>> 25371db (Add welcome route and update README with live URL)
 finance-backend/
 ├── src/
 │   ├── app.js                  Express app (middleware + routes)
@@ -177,11 +170,7 @@ node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
 ## API Reference
 
 **Base URL (local):** `http://localhost:3000/api/v1`
-<<<<<<< HEAD
-**Base URL (live):** `https://your-railway-url.up.railway.app/api/v1`
-=======
 **Base URL (live):** `https://finance-backend-zorvyn-production.up.railway.app`
->>>>>>> 25371db (Add welcome route and update README with live URL)
 T | /auth/logout | Any user | Invalidate refresh token |
 
 ### User Endpoints
