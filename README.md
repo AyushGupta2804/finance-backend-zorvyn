@@ -5,28 +5,33 @@
 
 ---
 
-## Table of Contents
+## Links
 
-1. [Project Overview](#project-overview)
-2. [Tech Stack & Justification](#tech-stack--justification)
-3. [Architecture](#architecture)
-4. [Role-Based Access Control](#role-based-access-control)
-5. [Setup & Run](#setup--run)
-6. [API Documentation](#api-documentation)
-7. [Assumptions & Tradeoffs](#assumptions--tradeoffs)
-8. [Postman Examples](#postman-examples)
+| | URL |
+|---|---|
+| GitHub | https://github.com/AyushGupta2804/finance-backend-zorvyn |
+| Live API  <<<<<<< HEAD
+| Live API | https://your-railway-url.up.railway.app |
+=======
+| Live API  | https://finance-backend-zorvyn-production.up.railway.app |
+>>>>>>> 25371db (Add welcome route and update README with live URL)
+| Health Check | https://your-railway-url.up.railway.app/health |
 
 ---
 
-## Project Overview
+## Quick Start (Local)
 
-A production-grade REST API backend for a finance dashboard system. It supports:
+```bash
+npm install
+cp .env.example .env        # fill in DB_PASSWORD and JWT secrets
+mysql -u root -p < docs/schema.sql
+npm run dev                 # → http://localhost:3000
+```
 
-- JWT-based authentication with access + refresh token rotation
-- Three-tier RBAC: **Viewer → Analyst → Admin**
-- Full CRUD for financial records with soft delete
-- Advanced dashboard analytics (totals, trends, category breakdowns)
-- Input validation, structured error responses, rate limiting, and an audit log table
+Default admin account:
+| Email | Password |
+|---|---|
+| admin@finance.dev | Admin@1234 |
 
 ---
 
@@ -44,45 +49,45 @@ A production-grade REST API backend for a finance dashboard system. It supports:
 
 ---
 
-## Architecture
+## Project Structure
 
+<<<<<<< HEAD
 ```
-MVC + Service Layer pattern
+=======
 
-Request → Route → Middleware (auth/validation) → Controller → Service → DB
-                                                                  ↓
-                                                            Response (utils/response.js)
-```
-
-```
-src/
-├── app.js                  # Express app: middleware, routes, error handlers
-├── server.js               # Entry: DB connect → listen
-├── config/
-│   └── database.js         # MySQL connection pool
-├── controllers/            # Thin layer — delegate to services, return responses
-│   ├── auth.controller.js
-│   ├── user.controller.js
-│   ├── record.controller.js
-│   └── dashboard.controller.js
-├── services/               # All business logic lives here
-│   ├── auth.service.js
-│   ├── user.service.js
-│   ├── record.service.js
-│   └── dashboard.service.js
-├── routes/                 # Express routers — bind HTTP verbs to controllers
-│   ├── auth.routes.js
-│   ├── user.routes.js
-│   ├── record.routes.js
-│   └── dashboard.routes.js
-├── middleware/
-│   ├── auth.js             # authenticate (JWT verify) + authorize (role guard)
-│   └── errorHandler.js     # AppError class + global error handler
-├── validators/
-│   └── index.js            # Joi schemas + validate() middleware factory
-└── utils/
-    ├── jwt.js              # Token generation/verification helpers
-    └── response.js         # Consistent success/paginated response helpers
+>>>>>>> 25371db (Add welcome route and update README with live URL)
+finance-backend/
+├── src/
+│   ├── app.js                  Express app (middleware + routes)
+│   ├── server.js               Entry point
+│   ├── config/database.js      MySQL connection pool
+│   ├── controllers/            Thin — delegate to services
+│   │   ├── auth.controller.js
+│   │   ├── user.controller.js
+│   │   ├── record.controller.js
+│   │   └── dashboard.controller.js
+│   ├── services/               All business logic lives here
+│   │   ├── auth.service.js
+│   │   ├── user.service.js
+│   │   ├── record.service.js
+│   │   └── dashboard.service.js
+│   ├── routes/                 HTTP verb + path → controller
+│   │   ├── auth.routes.js
+│   │   ├── user.routes.js
+│   │   ├── record.routes.js
+│   │   └── dashboard.routes.js
+│   ├── middleware/
+│   │   ├── auth.js             authenticate() + authorize()
+│   │   └── errorHandler.js     Global error handler
+│   ├── validators/index.js     All Joi schemas
+│   └── utils/
+│       ├── jwt.js              Token helpers
+│       └── response.js         Consistent JSON responses
+├── docs/schema.sql             Run once to initialize DB
+├── tests/api.test.js           Jest + Supertest integration tests
+├── .env.example
+├── package.json
+└── README.md
 ```
 
 ---
@@ -171,17 +176,13 @@ node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
 
 ## API Reference
 
-**Base URL:** `http://localhost:3000/api/v1`
-
-All protected routes require: `Authorization: Bearer <accessToken>`
-
-### Auth Endpoints
-| Method | Endpoint | Access | Description |
-|---|---|---|---|
-| POST | /auth/register | Public | Register new user |
-| POST | /auth/login | Public | Login, receive tokens |
-| POST | /auth/refresh | Public | Refresh expired access token |
-| POST | /auth/logout | Any user | Invalidate refresh token |
+**Base URL (local):** `http://localhost:3000/api/v1`
+<<<<<<< HEAD
+**Base URL (live):** `https://your-railway-url.up.railway.app/api/v1`
+=======
+**Base URL (live):** `https://finance-backend-zorvyn-production.up.railway.app`
+>>>>>>> 25371db (Add welcome route and update README with live URL)
+T | /auth/logout | Any user | Invalidate refresh token |
 
 ### User Endpoints
 | Method | Endpoint | Access | Description |
